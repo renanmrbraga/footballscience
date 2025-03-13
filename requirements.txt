@@ -1,0 +1,15 @@
+requests
+beautifulsoup4
+selenium
+pandas
+numpy
+matplotlib
+seaborn
+jupyter
+scikit-learn
+streamlit
+lxml
+pytest
+black
+isort
+
