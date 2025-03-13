@@ -21,7 +21,7 @@ Utilizaremos diversas bibliotecas e frameworks de aprendizado de máquina, inclu
 ## Tecnologias Utilizadas
 
 ### Linguagens de Programação:
-- Python 3
+- Python
 
 ### Bibliotecas e Frameworks:
 - Pandas e NumPy para manipulação de dados
@@ -78,8 +78,8 @@ Football-Science/
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/seu_usuario/football-science.git
-cd football-science
+git clone https://github.com/renanmrbraga/footballscience.git
+cd footballscience
 ```
 
 ### 2. Criar e ativar um ambiente virtual
