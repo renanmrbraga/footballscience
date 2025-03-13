@@ -5,8 +5,7 @@ O **Football Science** é um projeto de **Ciência de Dados aplicada ao futebol*
 
 🧠 **Principais Objetivos**  
 - Criar modelos preditivos para prever classificações.  
-- Relacionar investimentos e desempenho esportivo.  
-- Detectar possíveis manipulações de resultados.  
+- Relacionar investimentos e desempenho esportivo.
 - Utilizar **machine learning** para identificar padrões ocultos.  
 
 📌 **Tecnologias Utilizadas**  
