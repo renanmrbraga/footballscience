@@ -1,18 +1,24 @@
+# Ignorar a pasta da API Laravel
+api-futebol-brasileiro/
+
+# Ignorar arquivos de configuração sensíveis
+.env
+
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
 # Python
 *.pyc
 *.pyo
-__pycache__
+__pycache__/
 
 # VS Code
 .vscode/
 
 # Power BI
-.pbix
+*.pbix
 
-# Database
+# Banco de Dados
 *.sqlite
 *.db
 
@@ -34,10 +40,8 @@ ipython_config.py
 # Kaggle
 *.json
 
-# Other
+# Arquivos temporários
 *.log
 *.csv
 *.tsv
 
-# Materiais sensíveis
-materiais/

@@ -1,8 +1,17 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
 import random
+from dotenv import load_dotenv
+
+# Carregar o arquivo .env
+load_dotenv()
+
+# Carregar a URL base e o User-Agent de forma segura
+BASE_URL = os.getenv("BASE_URL")
+USER_AGENT = os.getenv("USER_AGENT", "Mozilla/5.0")
 
 # Configuração de caminhos
 CLUBES_CSV = 'data/processed/clubes.csv'
@@ -11,9 +20,6 @@ SAIDA_CSV = 'data/raw/transferencias.csv'
 # Configuração de delays
 DELAY_MIN = 3
 DELAY_MAX = 6
-
-# URL base do Transfermarkt
-BASE_URL = "https://www.transfermarkt.com/{}/alletransfers/verein/{}/"
 
 # Gerar temporadas de 14/15 até a atual
 def gerar_temporadas():
@@ -30,7 +36,7 @@ def extrair_transferencias(nome_clube, codigo_clube):
     """Extrai as transferências de um clube específico para as temporadas definidas."""
     dados_transferencias = []
     url = BASE_URL.format(nome_clube, codigo_clube)
-    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+    response = requests.get(url, headers={'User-Agent': USER_AGENT})
     
     if response.status_code != 200:
         print(f"[ERRO] Falha ao acessar {url} - Status: {response.status_code}")
