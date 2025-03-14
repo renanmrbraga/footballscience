@@ -120,9 +120,9 @@ Se quiser contribuir para este projeto, siga os passos:
 ## Aviso Legal (Disclaimer)
 Este projeto foi criado exclusivamente para fins educacionais e para demonstrar habilidades em Ciência de Dados, incluindo:
 
-Web Scraping
-Consumo de APIs
-Análise e Modelagem de Dados
+- Web Scraping
+- Consumo de APIs
+- Análise e Modelagem de Dados
 
 ## Importante:
 
