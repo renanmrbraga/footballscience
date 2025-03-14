@@ -2,7 +2,7 @@
 
 ## Descrição
 
-**Football Science** é um projeto avançado de Ciência de Dados voltado para a previsão do sucesso futuro dos clubes de futebol. O projeto utilizará técnicas de Machine Learning, Web Scraping e conexão com APIs para coletar, processar e analisar dados financeiros e estatísticos dos clubes e jogadores.
+**Football Science** é um projeto avançado de Ciência de Dados voltado para a previsão do sucesso futuro dos clubes de futebol.
 
 Utilizaremos diversas bibliotecas e frameworks de aprendizado de máquina, incluindo:
 - **scikit-learn**
@@ -48,7 +48,7 @@ Os dados serão coletados a partir de diversas fontes:
 - **Dados financeiros** de relatórios e portais especializados.
 
 ### Web Scraping:
-Utilizaremos **BeautifulSoup** e **Selenium** para extrair informações de portais esportivos e financeiros. O processo será automatizado para garantir atualização contínua dos dados.
+Utilizaremos **BeautifulSoup** e **Selenium** para extrair informações de terceiros.
 
 ### Conexão com APIs:
 Serão integradas APIs como:
@@ -116,6 +116,20 @@ Se quiser contribuir para este projeto, siga os passos:
 3. Commit suas mudanças (`git commit -m 'Adicionando nova feature'`)
 4. Faça **push** para a branch (`git push origin minha-feature`)
 5. Abra um **Pull Request**
+
+## Aviso Legal (Disclaimer)
+Este projeto foi criado exclusivamente para fins educacionais e para demonstrar habilidades em Ciência de Dados, incluindo:
+
+Web Scraping
+Consumo de APIs
+Análise e Modelagem de Dados
+
+## Importante:
+
+Não redistribuo nem armazeno dados extraídos de terceiros. O código disponível aqui não contém nem compartilhará datasets raspados.
+O scraper deve ser executado apenas por usuários que aceitarem os termos de uso dos sites de origem.
+Respeito as políticas e direitos dos proprietários dos dados. Se houver qualquer violação não intencional, o conteúdo pode ser ajustado ou removido conforme necessário.
+Se você for utilizar este projeto, leia e siga os termos de uso dos sites de onde os dados são obtidos. O uso indevido é de total responsabilidade do usuário.
 
 ## Licença
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
