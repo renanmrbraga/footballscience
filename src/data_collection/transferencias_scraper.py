@@ -84,9 +84,16 @@ def coletar_dados_transferencias():
 
 
 def salvar_dados_transferencias(dados):
-    """Salva os dados coletados em um arquivo CSV."""
+    """Salva os dados coletados em um arquivo CSV, adicionando um ID sequencial ordenado."""
     colunas = ["Clube", "Temporada", "Jogador", "Clube_origem_destino", "Valor"]
     df_transferencias = pd.DataFrame(dados, columns=colunas)
+
+    # Ordenar por temporada (assumindo que a temporada está no formato correto)
+    df_transferencias.sort_values(by=["Temporada"], ascending=True, inplace=True)
+
+    # Adicionar ID sequencial
+    df_transferencias.insert(0, "ID", range(1, len(df_transferencias) + 1))
+
     df_transferencias.to_csv(SAIDA_CSV, sep=';', index=False, encoding='utf-8')
     print(f"[INFO] Scraping finalizado! Dados salvos em {SAIDA_CSV}")
 
