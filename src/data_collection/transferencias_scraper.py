@@ -18,8 +18,8 @@ CLUBES_CSV = os.getenv("CLUBES_CSV_PATH")
 SAIDA_CSV = os.getenv("SAIDA_CSV_PATH")
 
 # Configuração de delays
-DELAY_MIN = int(os.getenv("DELAY_MIN", 3))
-DELAY_MAX = int(os.getenv("DELAY_MAX", 6))
+DELAY_MIN = int(os.getenv("DELAY_MIN"))
+DELAY_MAX = int(os.getenv("DELAY_MAX"))
 
 # Gerar temporadas de 14/15 até a atual
 def gerar_temporadas():
