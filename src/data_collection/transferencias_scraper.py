@@ -11,7 +11,7 @@ load_dotenv()
 
 # Configuração segura de URLs e User-Agent
 BASE_URL = os.getenv("BASE_URL")
-USER_AGENT = os.getenv("USER_AGENT"
+USER_AGENT = os.getenv("USER_AGENT")
 
 # Configuração dos caminhos dos arquivos
 CLUBES_CSV = os.getenv("CLUBES_CSV_PATH")
