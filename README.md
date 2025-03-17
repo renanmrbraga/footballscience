@@ -32,7 +32,7 @@ footballscience/
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/renanmrbraga/footballanalysis.git
+   git clone https://github.com/renanmrbraga/footballscience.git
    ```
 2. **Entre no diretório do projeto:**
    ```bash
