@@ -12,7 +12,7 @@ from webdriver_manager.chrome import ChromeDriverManager  # Gerenciamento autom�
 from dotenv import load_dotenv  # Carregamento de variáveis de ambiente
 from bs4 import BeautifulSoup  # Análise e extração de dados do HTML
 
-# Obtém o diretório do próprio script e sobe um nível para `src`
+# Obtém o diretório do env
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
 ENV_PATH = os.path.join(BASE_DIR, "..", ".env")  # Caminho para o .env dentro de src/
 
