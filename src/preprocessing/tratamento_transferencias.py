@@ -53,8 +53,19 @@ def limpar_valor(transfer_sum):
 # 🔹 Aplicar a conversão correta dos valores
 df_transferencias["Valor"] = df_transferencias["Transfer Sum"].apply(limpar_valor)
 
+# 🔹 Função para converter a temporada (ex: "14/15" → 2015, "15/16" → 2016)
+def converter_temporada(temporada):
+    match = re.match(r"(\d{2})/(\d{2})", str(temporada))
+    if match:
+        _, ano_final = match.groups()
+        return int(f"20{ano_final}")  # Pega o segundo ano como referência (ex: "15" → 2015)
+    return None  # Retorna None se o formato estiver incorreto
+
+# 🔹 Aplicar a conversão de temporada
+df_transferencias["Ano"] = df_transferencias["Temporada"].apply(converter_temporada)
+
 # 🔹 Criar DataFrame com as colunas desejadas
-df_tratado = df_transferencias[["Clube_ID", "Tipo", "Origem/Destino", "Valor", "Empréstimo"]].copy()
+df_tratado = df_transferencias[["Clube_ID", "Tipo", "Origem_Destino", "Valor", "Empréstimo", "Ano"]].copy()
 
 # 🔹 Criar a coluna de ID sequencial (começando em 1)
 df_tratado.insert(0, "ID", range(1, len(df_tratado) + 1))
