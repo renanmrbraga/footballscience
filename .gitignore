@@ -1,0 +1,17 @@
+# Ignorar o ambiente virtual
+venv/
+
+# Ignorar arquivos sensíveis
+src/.env
+
+#Ignorar logs e secrets
+__pycache__/
+*.log
+db_backups/
+secrets/
+
+# Ignorar diretórios temporários do VS Code
+.vscode/
+
+# Ignorar pastas sensíveis
+data/
