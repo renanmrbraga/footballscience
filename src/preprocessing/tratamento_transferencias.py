@@ -10,23 +10,23 @@ ENV_PATH = os.path.join(BASE_DIR, "..", ".env")  # Caminho para o .env
 # Carrega o .env do caminho correto
 load_dotenv(ENV_PATH)
 
-# 🔹 Configuração dos arquivos
+# Configuração dos arquivos
 ARQUIVO_TRANSFERENCIAS_RAW = os.getenv("ARQUIVO_TRANSFERENCIAS_RAW")  # CSV com as transferências extraídas
 ARQUIVO_TRANSFERENCIAS_PROCESSED = os.getenv("ARQUIVO_TRANSFERENCIAS_PROCESSED")  # Caminho de saída do CSV tratado
 
-# 🔹 Verificação se os arquivos foram carregados corretamente
+# Verificação se os arquivos foram carregados corretamente
 if not ARQUIVO_TRANSFERENCIAS_RAW or not ARQUIVO_TRANSFERENCIAS_PROCESSED:
     raise ValueError("[ERRO] Um ou mais caminhos de arquivo não foram carregados corretamente. Verifique o .env.")
 
-# 🔹 Carregar os dados de transferências
+# Carregar os dados de transferências
 df_transferencias = pd.read_csv(ARQUIVO_TRANSFERENCIAS_RAW, sep=';', dtype=str)
 
-# 🔹 Identificar se a transferência foi um empréstimo
+# Identificar se a transferência foi um empréstimo
 df_transferencias["Empréstimo"] = df_transferencias["Transfer Sum"].apply(
     lambda x: "Sim" if "loan" in str(x).lower() or "end of loan" in str(x).lower() else "Não"
 )
 
-# 🔹 Função para limpar e converter valores corretamente para float
+# Função para limpar e converter valores corretamente para float
 def limpar_valor(transfer_sum):
     if pd.isna(transfer_sum) or transfer_sum.strip() == "-" or transfer_sum.lower() in ["unknown", "end of loan"]:
         return 0.0  # Se não houver valor, define como 0.0
@@ -50,10 +50,10 @@ def limpar_valor(transfer_sum):
 
     return 0.0  # Se não conseguiu processar corretamente
 
-# 🔹 Aplicar a conversão correta dos valores
-df_transferencias["Valor"] = df_transferencias["Transfer Sum"].apply(limpar_valor)
+# Aplicar a conversão correta dos valores
+df_transferencias["Valor_Euros"] = df_transferencias["Transfer Sum"].apply(limpar_valor)
 
-# 🔹 Função para converter a temporada (ex: "14/15" → 2015, "15/16" → 2016)
+# Função para converter a temporada (ex: "14/15" → 2015, "15/16" → 2016)
 def converter_temporada(temporada):
     match = re.match(r"(\d{2})/(\d{2})", str(temporada))
     if match:
@@ -61,16 +61,16 @@ def converter_temporada(temporada):
         return int(f"20{ano_final}")  # Pega o segundo ano como referência (ex: "15" → 2015)
     return None  # Retorna None se o formato estiver incorreto
 
-# 🔹 Aplicar a conversão de temporada
+# Aplicar a conversão de temporada
 df_transferencias["Ano"] = df_transferencias["Temporada"].apply(converter_temporada)
 
-# 🔹 Criar DataFrame com as colunas desejadas
-df_tratado = df_transferencias[["Clube_ID", "Tipo", "Origem_Destino", "Valor", "Empréstimo", "Ano"]].copy()
+# Criar DataFrame com as colunas desejadas
+df_tratado = df_transferencias[["Clube_ID", "Tipo", "Origem_Destino", "Valor_Euros", "Empréstimo", "Ano"]].copy()
 
-# 🔹 Criar a coluna de ID sequencial (começando em 1)
+# Criar a coluna de ID sequencial (começando em 1)
 df_tratado.insert(0, "ID", range(1, len(df_tratado) + 1))
 
-# 🔹 Salvar o CSV tratado com valores corretamente formatados
+# Salvar o CSV tratado com valores corretamente formatados
 df_tratado.to_csv(ARQUIVO_TRANSFERENCIAS_PROCESSED, sep=";", index=False, encoding="utf-8-sig", float_format="%.2f")
 
 print(f"[INFO] Transferências tratadas salvas em {ARQUIVO_TRANSFERENCIAS_PROCESSED}")

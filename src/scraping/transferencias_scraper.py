@@ -1,16 +1,16 @@
-import os  # Manipulação de variáveis de ambiente e arquivos
-import time  # Controle de tempo e atrasos
-import random  # Geração de atrasos aleatórios
-import pandas as pd  # Manipulação de dados e criação de CSV
+import os
+import time
+import random
+import pandas as pd
 import re
 from datetime import datetime
-from selenium import webdriver  # Automação do navegador
-from selenium.webdriver.common.by import By  # Localização de elementos na página
-from selenium.webdriver.chrome.service import Service  # Controle do serviço do ChromeDriver
-from selenium.webdriver.chrome.options import Options  # Configuração do navegador
-from webdriver_manager.chrome import ChromeDriverManager  # Gerenciamento automático do ChromeDriver
-from dotenv import load_dotenv  # Carregamento de variáveis de ambiente
-from bs4 import BeautifulSoup  # Análise e extração de dados do HTML
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from dotenv import load_dotenv
+from bs4 import BeautifulSoup
 
 # Obtém o diretório do env
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
@@ -21,12 +21,12 @@ load_dotenv(ENV_PATH)
 
 # Configuração de caminhos para os arquivos de entrada e saída
 ARQUIVO_CLUBES = os.getenv("ARQUIVO_CLUBES")  # Arquivo CSV de entrada com os times
-ARQUIVO_TRANSFERENCIAS_RAW= os.getenv("ARQUIVO_TRANSFERENCIAS_RAW")  # Arquivo CSV de saída para armazenar os dados extraídos
+ARQUIVO_TRANSFERENCIAS_RAW= os.getenv("ARQUIVO_TRANSFERENCIAS_RAW")  # CSV com as transferências extraídas
 
 # Nomes das colunas no CSV de entrada
+COLUNA_ID = os.getenv("COLUNA_ID")  # ID do clube
 COLUNA_NOME = os.getenv("COLUNA_NOME_TRANSFER")  # Nome do clube
 COLUNA_CODIGO = os.getenv("COLUNA_CODIGO_TRANSFER")  # Código identificador do clube
-COLUNA_ID = os.getenv("COLUNA_ID")  # Nome oficial do clube
 
 # URL Base para acessar os dados
 BASE_URL = os.getenv("BASE_URL")
