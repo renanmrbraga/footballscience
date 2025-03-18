@@ -14,7 +14,7 @@ Aplicação de técnicas de Machine Learning para prever o sucesso futuro dos cl
 - **Linguagem:** Python
 - **Machine Learning:** scikit-learn, TensorFlow, Keras, XGBoost, LightGBM, CatBoost
 - **Manipulação de Dados:** Pandas, NumPy
-- **Visualização:** Matplotlib, Seaborn
+- **Visualização:** Matplotlib, Seaborn, Plotly
 
 ## Estrutura do Projeto
 
@@ -32,7 +32,7 @@ footballscience/
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/renanmrbraga/footballanalysis.git
+   git clone https://github.com/renanmrbraga/footballscience.git
    ```
 2. **Entre no diretório do projeto:**
    ```bash
