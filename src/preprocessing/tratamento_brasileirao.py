@@ -1,7 +1,6 @@
 import pandas as pd
 import os
 from dotenv import load_dotenv, find_dotenv
-import re
 
 # Carrega as variáveis de ambiente
 load_dotenv(find_dotenv())
@@ -12,6 +11,9 @@ ARQUIVO_BRASILEIRAO_PROCESSED = os.getenv("ARQUIVO_BRASILEIRAO_PROCESSED")  # CS
 
 # Carregar o CSV com o separador correto
 df = pd.read_csv(ARQUIVO_BRASILEIRAO_RAW, sep=";", encoding="utf-8")
+
+# Remover "(C)" do nome dos clubes
+df["Equipevde"] = df["Equipevde"].str.replace(r"\(C\)", "", regex=True).str.strip()
 
 # Tratamento das colunas numéricas:
 # Para a coluna SG, removemos espaços, substituímos o traço especial por traço normal e removemos o sinal "+"
