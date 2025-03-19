@@ -56,6 +56,7 @@ for idx, clube in df_clubes.iterrows():
     estatisticas.append({
         "ID": id_clube,
         "Nome Oficial": nome_oficial,
+        "UF": clube["UF"],  # Coluna UF incluída na 3ª posição
         "Participacoes_SerieA": qtd_participacoes,
         "Rebaixamentos": rebaixamentos,
         "Media_Pontos": round(media_pontos, 2),
