@@ -6,12 +6,12 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 from bs4 import BeautifulSoup
 import re
 
 # Carrega as variáveis de ambiente
-load_dotenv()
+load_dotenv(find_dotenv())
 
 # Configuração dos arquivos e scraper
 ARQUIVO_BRASILEIRAO_RAW = os.getenv("ARQUIVO_BRASILEIRAO_RAW")
