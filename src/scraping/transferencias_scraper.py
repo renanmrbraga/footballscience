@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 load_dotenv(find_dotenv())
 
 # Configuração de caminhos para os arquivos de entrada e saída
-ARQUIVO_CLUBES = os.getenv("ARQUIVO_CLUBES")  # Arquivo CSV de entrada com os times
+ARQUIVO_CLUBES_RAW = os.getenv("ARQUIVO_CLUBES_RAW")  # Arquivo CSV de entrada com os times
 ARQUIVO_TRANSFERENCIAS_RAW= os.getenv("ARQUIVO_TRANSFERENCIAS_RAW")  # CSV com as transferências extraídas
 
 # Nomes das colunas no CSV de entrada
@@ -164,7 +164,7 @@ def coletar_dados():
     """
     Coleta as transferências de todos os clubes listados no arquivo de entrada.
     """
-    df = pd.read_csv(ARQUIVO_CLUBES, sep=';', dtype=str).fillna("")
+    df = pd.read_csv(ARQUIVO_CLUBES_RAW, sep=';', dtype=str).fillna("")
     driver = configurar_driver()
     dados_gerais = []
 
