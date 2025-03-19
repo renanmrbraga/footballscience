@@ -15,6 +15,11 @@ df = pd.read_csv(ARQUIVO_BRASILEIRAO_RAW, sep=";", encoding="utf-8")
 # Remover "(C)" do nome dos clubes
 df["Equipevde"] = df["Equipevde"].str.replace(r"\(C\)", "", regex=True).str.strip()
 
+# Padronizar nomes de clubes
+df["Equipevde"] = df["Equipevde"].replace({
+    "Atlético Paranaense": "Athletico Paranaense"
+})
+
 # Tratamento das colunas numéricas:
 # Para a coluna SG, removemos espaços, substituímos o traço especial por traço normal e removemos o sinal "+"
 df["SG"] = df["SG"].astype(str).str.strip()\
