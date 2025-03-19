@@ -1,18 +1,17 @@
 import pandas as pd
 import os
 import re
-from dotenv import load_dotenv  # Carregamento de variáveis de ambiente
+from dotenv import load_dotenv, find_dotenv
 
-# Obtém o diretório do env
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
-ENV_PATH = os.path.join(BASE_DIR, "..", ".env")  # Caminho para o .env
-
-# Carrega o .env do caminho correto
-load_dotenv(ENV_PATH)
+# Carrega as variáveis de ambiente
+load_dotenv(find_dotenv())
 
 # Configuração dos arquivos
 ARQUIVO_TRANSFERENCIAS_RAW = os.getenv("ARQUIVO_TRANSFERENCIAS_RAW")  # CSV com as transferências extraídas
 ARQUIVO_TRANSFERENCIAS_PROCESSED = os.getenv("ARQUIVO_TRANSFERENCIAS_PROCESSED")  # Caminho de saída do CSV tratado
+
+# Definir taxa de conversão fixa
+TAXA_CONVERSAO = 6.20  # 1 EUR = 6.20 BRL
 
 # Verificação se os arquivos foram carregados corretamente
 if not ARQUIVO_TRANSFERENCIAS_RAW or not ARQUIVO_TRANSFERENCIAS_PROCESSED:
@@ -40,18 +39,19 @@ def limpar_valor(transfer_sum):
 
             # Ajusta o valor conforme o multiplicador (milhões ou milhares)
             if multiplicador == "m":
-                return valor_float * 1_000_000
+                valor_float *= 1_000_000
             elif multiplicador == "k":
-                return valor_float * 1_000
-            else:
-                return valor_float  # Valor normal sem multiplicador
+                valor_float *= 1_000
+
+            # Converte para reais
+            return valor_float * TAXA_CONVERSAO
         except ValueError:
             return 0.0  # Caso não consiga converter
 
     return 0.0  # Se não conseguiu processar corretamente
 
 # Aplicar a conversão correta dos valores
-df_transferencias["Valor_Euros"] = df_transferencias["Transfer Sum"].apply(limpar_valor)
+df_transferencias["Valor"] = df_transferencias["Transfer Sum"].apply(limpar_valor)
 
 # Função para converter a temporada (ex: "14/15" → 2015, "15/16" → 2016)
 def converter_temporada(temporada):
@@ -65,7 +65,7 @@ def converter_temporada(temporada):
 df_transferencias["Ano"] = df_transferencias["Temporada"].apply(converter_temporada)
 
 # Criar DataFrame com as colunas desejadas
-df_tratado = df_transferencias[["Clube_ID", "Tipo", "Origem_Destino", "Valor_Euros", "Empréstimo", "Ano"]].copy()
+df_tratado = df_transferencias[["Clube_ID", "Tipo", "Origem_Destino", "Valor", "Empréstimo", "Ano"]].copy()
 
 # Criar a coluna de ID sequencial (começando em 1)
 df_tratado.insert(0, "ID", range(1, len(df_tratado) + 1))

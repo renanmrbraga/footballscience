@@ -2,16 +2,16 @@
 venv/
 
 # Ignorar arquivos sensíveis
-src/.env
-
-#Ignorar logs e secrets
-__pycache__/
-*.log
-db_backups/
-secrets/
+.env
 
 # Ignorar diretórios temporários do VS Code
 .vscode/
 
 # Ignorar pastas sensíveis
 data/
+
+#Ignorar logs e secrets
+__pycache__/
+*.log
+db_backups/
+secrets/

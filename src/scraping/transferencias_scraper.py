@@ -9,15 +9,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from bs4 import BeautifulSoup
 
-# Obtém o diretório do env
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Diretório do script atual
-ENV_PATH = os.path.join(BASE_DIR, "..", ".env")  # Caminho para o .env dentro de src/
-
-# Carrega o .env do caminho correto
-load_dotenv(ENV_PATH)
+# Carrega as variáveis de ambiente
+load_dotenv(find_dotenv())
 
 # Configuração de caminhos para os arquivos de entrada e saída
 ARQUIVO_CLUBES = os.getenv("ARQUIVO_CLUBES")  # Arquivo CSV de entrada com os times
@@ -29,7 +25,7 @@ COLUNA_NOME = os.getenv("COLUNA_NOME_TRANSFER")  # Nome do clube
 COLUNA_CODIGO = os.getenv("COLUNA_CODIGO_TRANSFER")  # Código identificador do clube
 
 # URL Base para acessar os dados
-BASE_URL = os.getenv("BASE_URL")
+TRANSFERENCIAS_SCRAPER = os.getenv("TRANSFERENCIAS_SCRAPER")
 USER_AGENT = os.getenv("USER_AGENT")  # Agente de usuário para evitar bloqueios automáticos
 
 # Configuração de tempos de espera para evitar bloqueios e garantir carregamento da página
@@ -102,10 +98,10 @@ def temporada_valida(season):
 def extrair_transferencias(driver, nome_clube, codigo_clube, nome_oficial):
     """
     Extrai as transferências de jogadores para um clube específico,
-    incluindo a coluna de Tipo (Entrada/Saída) e o Nome Oficial do Clube.
+    incluindo a coluna de Tipo (Entrada/Saída) e o ID do Clube.
     """
     dados_transferencias = []
-    url_formatada = BASE_URL.format(nome_clube, codigo_clube)
+    url_formatada = TRANSFERENCIAS_SCRAPER.format(nome_clube, codigo_clube)
 
     try:
         print(f"[INFO] Acessando URL: {url_formatada}")
@@ -153,7 +149,7 @@ def extrair_transferencias(driver, nome_clube, codigo_clube, nome_oficial):
                     if "Loan fee" in transfer_sum_raw else transfer_sum_raw or "Unknown"
                 )
 
-                # Adiciona os dados à lista, incluindo o tipo de transferência e nome oficial do clube
+                # Adiciona os dados à lista, incluindo o tipo de transferência e ID do clube
                 dados_transferencias.append([season, nome_oficial, tipo_transferencia, player, club, transfer_sum])
 
                 print(f"[DEBUG] {season} | {nome_oficial} | {tipo_transferencia} | {player} -> {club} ({transfer_sum})")
